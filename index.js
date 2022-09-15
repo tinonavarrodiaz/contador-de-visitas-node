@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors');
 const fs = require('fs');
 
 let file = fs.readFileSync(__dirname + '/contador.txt', 'utf8');
@@ -20,7 +21,7 @@ const app = express();
 
 app.set('port', process.env.PORT || 3000);
 
-app.get('/', (req, res) => {
+app.get('/', cors(), (req, res) => {
   file++;
   writeFile(file);
   const count = {
